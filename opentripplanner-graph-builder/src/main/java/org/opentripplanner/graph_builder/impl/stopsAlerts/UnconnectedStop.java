@@ -13,12 +13,14 @@
 
 package org.opentripplanner.graph_builder.impl.stopsAlerts;
 
+import org.opentripplanner.routing.edgetype.PathwayEdge;
 import org.opentripplanner.routing.edgetype.StreetTransitLink;
 import org.opentripplanner.routing.graph.Edge;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.vertextype.TransitStop;
 
 import java.util.List;
+
 
 public class UnconnectedStop extends AbstractStopTester {
 
@@ -31,7 +33,7 @@ public class UnconnectedStop extends AbstractStopTester {
         List<Edge> outgoingStreets = ts.getOutgoingStreetEdges();
         boolean hasStreetLink = false;
         for(Edge e:ts.getIncoming()){
-            if(e instanceof StreetTransitLink){
+            if(e instanceof StreetTransitLink || e instanceof PathwayEdge){
                 hasStreetLink = true;
                 break;
             }
